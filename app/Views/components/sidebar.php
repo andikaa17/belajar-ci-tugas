@@ -42,7 +42,7 @@
         <i class="bi bi-person-circle"></i>
         <span>Profile</span>
       </a>
-    </li><!-- End F.A.Q nav -->
+    </li><!-- End Profile -->
 
   <li class="nav-item">
       <a class="nav-link" <?php echo (uri_string() == 'faq') ? "" : "collapsed" ?>" href="faq">

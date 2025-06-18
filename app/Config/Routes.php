@@ -45,3 +45,5 @@ $routes->get('faq', 'FaqController::index', ['filter' => 'redirect']);
 $routes->get('profile', 'Home::profile', ['filter' => 'auth']);
 $routes->get('contact', 'Home::contact', ['filter' => 'auth']);
 
+$routes->resource('api', ['controller' => 'apiController']);
+

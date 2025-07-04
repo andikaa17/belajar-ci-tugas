@@ -40,8 +40,11 @@
 </li>
 <?php endif; ?>
 
+  <?php
+        }
+        ?>
 
-  <li class="nav-item">
+         <li class="nav-item">
   <a class="nav-link <?php echo (uri_string() == 'produk-kategori') ? "" : "collapsed" ?>" href="produk-kategori">
         <i class="bi bi-receipt-cutoff"></i>
       <span>Kategori Produk</span>
@@ -70,10 +73,6 @@
         <span>Contact</span>
       </a>
     </li><!-- End F.A.Q nav -->
-  
-  <?php
-        }
-        ?>
         
     </ul>
 

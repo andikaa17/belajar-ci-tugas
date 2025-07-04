@@ -84,8 +84,17 @@ class DiskonController extends BaseController
 
 
     public function delete($id)
-    {
-        $this->diskonModel->delete($id);
-        return redirect()->to('/diskon')->with('success', 'Diskon berhasil dihapus');
+{
+    $model = new \App\Models\DiskonModel();
+
+    if (!$model->find($id)) {
+        return redirect()->to(base_url('diskon'))->with('failed', 'Data tidak ditemukan.');
     }
+
+    $model->delete($id);
+
+    return redirect()->to(base_url('diskon'))->with('success', 'Data berhasil dihapus.');
+}
+
+
 }

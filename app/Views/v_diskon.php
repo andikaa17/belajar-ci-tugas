@@ -37,7 +37,10 @@
                 <td><?= number_format($row['nominal'], 0, '', '') ?></td>
                 <td>
                     <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editModal-<?= $row['id'] ?>">Ubah</button>
-                    <a href="<?= base_url('diskon/delete/' . $row['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus data ini?')">Hapus</a>
+                     <form action="<?= base_url('diskon/delete/' . $row['id']) ?>" method="post" style="display:inline;" onsubmit="return confirm('Yakin hapus data ini?')">
+                    <?= csrf_field(); ?>
+                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+    </form>
                 </td>
             </tr>
 

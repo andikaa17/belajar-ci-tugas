@@ -29,7 +29,7 @@ class Home extends BaseController
         $product = $this->product->findAll();
         $data['product'] = $product;
 
-        // Cek diskon aktif hari ini
+        
         $today = date('Y-m-d');
         $diskon = $this->diskon->where('tanggal', $today)->first();
 

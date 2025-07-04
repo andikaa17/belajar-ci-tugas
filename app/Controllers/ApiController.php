@@ -53,11 +53,11 @@ class ApiController extends ResourceController
                     ->where('transaction_id', $pj['id'])
                     ->findAll();
                 
-                // Hitung jumlah item dari detail
+                
                 $jumlah_item = 0;
                 foreach ($details as $d) {
                     $qty = isset($d['jumlah']) ? (int)$d['jumlah'] : 0;
-                    $jumlah_item += max(0, $qty); // pastikan tidak negatif
+                    $jumlah_item += max(0, $qty); 
                 }
 
                 $pj['details'] = $details;

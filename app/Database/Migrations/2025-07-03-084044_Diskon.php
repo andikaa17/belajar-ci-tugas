@@ -32,7 +32,7 @@ class Diskon extends Migration
         ]
     ]);
     $this->forge->addKey('id', true);
-    $this->forge->addUniqueKey('tanggal'); // Pastikan tanggal unik
+    $this->forge->addUniqueKey('tanggal'); 
     $this->forge->createTable('diskon');
 }
 

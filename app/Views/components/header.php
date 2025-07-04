@@ -19,6 +19,56 @@
 <nav class="header-nav ms-auto">
   <ul class="d-flex align-items-center">
 
+  <!-- Notifikasi Diskon -->
+<?php if(session()->get('diskon')): ?>
+<div class="diskon-notification" style="
+    position: fixed;
+    top: 70px; /* Jarak dari atas lebih besar */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background-color: #d1ecf1;
+    color: #0c5460;
+    padding: 10px 25px;
+    border-radius: 20px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    border: 1px solid #bee5eb;
+    animation: slideDown 0.4s ease-out;
+">
+    🎉 Diskon hari ini: <strong>Rp <?= number_format(session()->get('diskon'), 0, ',', '.') ?></strong>
+</div>
+
+<style>
+    @keyframes slideDown {
+        from { 
+            opacity: 0;
+            top: 50px;
+        }
+        to { 
+            opacity: 1;
+            top: 70px;
+        }
+    }
+    
+    /* Responsive untuk mobile */
+    @media (max-width: 576px) {
+        .diskon-notification {
+            top: 60px;
+            padding: 8px 15px;
+            font-size: 12px;
+            border-radius: 15px;
+            max-width: 90%;
+            white-space: normal;
+            text-align: center;
+        }
+    }
+</style>
+<?php endif; ?>
+<!-- End Diskon-->
+
     <li class="nav-item d-block d-lg-none">
       <a class="nav-link nav-icon search-bar-toggle " href="#">
         <i class="bi bi-search"></i>

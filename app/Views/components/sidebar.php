@@ -28,6 +28,19 @@
     </a>
   </li><!-- End Produk Nav -->
 
+
+   <!-- Tambahkan Menu Diskon di sini -->
+  <?php if(session()->get('role') == 'admin') : ?>
+<li class="nav-item">
+    <a class="nav-link <?= (url_is('diskon*')) ? 'active' : 'collapsed' ?>" 
+       href="<?= base_url('diskon') ?>">
+       <i class="bi bi-tag-fill"></i>
+       <span>Diskon</span>
+    </a>
+</li>
+<?php endif; ?>
+
+
   <li class="nav-item">
   <a class="nav-link <?php echo (uri_string() == 'produk-kategori') ? "" : "collapsed" ?>" href="produk-kategori">
         <i class="bi bi-receipt-cutoff"></i>

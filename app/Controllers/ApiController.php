@@ -32,8 +32,7 @@ class ApiController extends ResourceController
      * @return ResponseInterface
      */
     public function index()
-    {
-        
+{
     $data = [ 
         'results' => [],
         'status' => ["code" => 401, "description" => "Unauthorized"]
@@ -45,23 +44,36 @@ class ApiController extends ResourceController
         $value = $value->getValue();
     });
 
-    if(array_key_exists("Key", $headers)){
+    if (array_key_exists("Key", $headers)) {
         if ($headers["Key"] == $this->apiKey) {
             $penjualan = $this->transaction->findAll();
             
             foreach ($penjualan as &$pj) {
-                $pj['details'] = $this->transaction_detail->where('transaction_id', $pj['id'])->findAll();
+                $details = $this->transaction_detail
+                    ->where('transaction_id', $pj['id'])
+                    ->findAll();
+                
+                // Hitung jumlah item dari detail
+                $jumlah_item = 0;
+                foreach ($details as $d) {
+                    $qty = isset($d['jumlah']) ? (int)$d['jumlah'] : 0;
+                    $jumlah_item += max(0, $qty); // pastikan tidak negatif
+                }
+
+                $pj['details'] = $details;
+                $pj['jumlah_item'] = $jumlah_item;
+
+                
+
             }
 
             $data['status'] = ["code" => 200, "description" => "OK"];
             $data['results'] = $penjualan;
-
         }
-    } 
+    }
 
     return $this->respond($data);
-
-    }
+}
 
     /**
      * Return the properties of a resource object.

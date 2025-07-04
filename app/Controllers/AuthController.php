@@ -6,18 +6,22 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
 use App\Models\UserModel; 
+use App\Models\DiskonModel;
 
 class AuthController extends BaseController
 {
     protected $user;
+    protected $diskon;
 
     function __construct()
     {
     helper('form');
     $this->user= new UserModel();
+    $this->diskon = new DiskonModel();
+
     }
 
-  public function login()
+public function login()
 {
     if ($this->request->getPost()) {
         $rules = [
@@ -29,7 +33,7 @@ class AuthController extends BaseController
             $username = $this->request->getVar('username');
             $password = $this->request->getVar('password');
 
-            $dataUser = $this->user->where(['username' => $username])->first(); //pasw 1234567
+            $dataUser = $this->user->where(['username' => $username])->first();
 
             if ($dataUser) {
                 if (password_verify($password, $dataUser['password'])) {
@@ -38,6 +42,16 @@ class AuthController extends BaseController
                         'role' => $dataUser['role'],
                         'isLoggedIn' => TRUE
                     ]);
+
+                    // Tambahan: cari diskon hari ini dan simpan ke session
+                    $tanggalHariIni = date('Y-m-d');
+                    $dataDiskon = $this->diskon->where('tanggal', $tanggalHariIni)->first();
+
+                    if ($dataDiskon) {
+                        session()->set('diskon', $dataDiskon['nominal']);
+                    } else {
+                        session()->remove('diskon');
+                    }
 
                     return redirect()->to(base_url('/'));
                 } else {
@@ -56,6 +70,7 @@ class AuthController extends BaseController
 
     return view('v_login');
 }
+
 
  public function logout()
  {

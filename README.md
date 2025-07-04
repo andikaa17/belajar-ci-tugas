@@ -156,6 +156,4 @@ Proyek ini adalah platform toko online yang dibangun menggunakan [CodeIgniter 4]
 - Menggunakan cURL untuk menampilkan data transaksi pada dashboard.
 - Data ditampilkan dalam bentuk tabel dengan informasi lengkap transaksi.
 
----
 
-Jika Anda ingin menambahkan dokumentasi diagram atau API endpoint detail, dapat ditambahkan di bagian tambahan selanjutnya.
